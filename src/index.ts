@@ -7,9 +7,15 @@ async function main() {
     "Send to Things3",
     async function (block) {
       const blk = await logseq.Editor.getBlock(block.uuid);
-      window.open(
-        `things:///add?title=${blk?.content}&notes=logseq://graph/logseq?block-id=${blk?.uuid}`
-      );
+      try {
+        window.open(
+          `things:///add?title=${blk?.content}&notes=logseq://graph/logseq?block-id=${blk?.uuid}`
+        );
+        logseq.UI.showMsg("Successfully sent to Things!", "success");
+      } catch (e) {
+        logseq.UI.showMsg("Sending to Things failed", "error");
+        throw new Error(e);
+      }
     }
   );
 }
