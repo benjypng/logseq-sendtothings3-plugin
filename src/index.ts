@@ -1,4 +1,5 @@
 import "@logseq/libs";
+import send from "./send";
 
 async function main() {
   console.log("logseq-sendtothings3-plugin loaded");
@@ -6,16 +7,14 @@ async function main() {
   await logseq.Editor.registerBlockContextMenuItem(
     "Send to Things3",
     async function (block) {
-      const blk = await logseq.Editor.getBlock(block.uuid);
-      try {
-        window.open(
-          `things:///add?title=${blk?.content}&notes=logseq://graph/logseq?block-id=${blk?.uuid}`
-        );
-        logseq.UI.showMsg("Successfully sent to Things!", "success");
-      } catch (e) {
-        logseq.UI.showMsg("Sending to Things failed", "error");
-        throw new Error(e);
-      }
+      await send(block);
+    }
+  );
+
+  await logseq.Editor.registerSlashCommand(
+    "Send to Things3",
+    async function (block) {
+      await send(block);
     }
   );
 }
