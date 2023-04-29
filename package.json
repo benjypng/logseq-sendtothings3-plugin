@@ -4,7 +4,7 @@
     "title": "logseq-sendtothings3-plugin",
     "icon": "./icon.svg"
   },
-  "version": "0.0.3",
+  "version": "0.0.4",
   "name": "logseq-sendtothings3-plugin",
   "author": "hkgnp",
   "license": "MIT",
