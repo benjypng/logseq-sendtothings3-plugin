@@ -24,7 +24,7 @@ export const send = async (uuid: BlockIdentity): Promise<void> => {
     window.open(
       `things:///add?title=${encodeURIComponent(
         blk.content,
-      )}&notes=${content}?block-id=${uuid}& x - success`,
+      )}&notes=${encodeURIComponent(content)}?block-id=${uuid}& x - success`,
     );
 
     await logseq.UI.showMsg("Successfully sent to Things!", "success");
