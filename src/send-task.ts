@@ -10,7 +10,7 @@ export const send = async (uuid: BlockIdentity): Promise<void> => {
     if (blk.children!.length > 0) {
       const findAllChildBlocks = (blocks: BlockEntity[]) => {
         for (const b of blocks) {
-          content += b.content + "%0A%0A";
+          content += "- " + b.content + "\n";
           if (b.children!.length > 0) {
             findAllChildBlocks(b.children as BlockEntity[]);
           }
@@ -19,6 +19,7 @@ export const send = async (uuid: BlockIdentity): Promise<void> => {
       findAllChildBlocks(blk.children as BlockEntity[]);
     }
 
+    content += "\n";
     content += `logseq://graph/${currGraph.name}`;
 
     window.open(
