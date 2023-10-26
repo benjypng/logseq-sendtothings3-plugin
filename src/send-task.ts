@@ -20,7 +20,7 @@ export const send = async (uuid: BlockIdentity): Promise<void> => {
     }
 
     content += "\n";
-    content += `logseq://graph/${currGraph.name}`;
+    content += `Source: logseq://graph/${currGraph.name}`;
 
     window.open(
       `things:///add?title=${encodeURIComponent(
